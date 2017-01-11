@@ -6,7 +6,7 @@ A  serverless chat application that uses Tor network to send messages.
 
 ## Arhitecture 
 
-This project will contain the AnonymityChat graphical interface and will communicate (IPC over sockets) with [TorExpertBundleController](https://github.com/batsw/TorExpertBundleController). It will be written in C# (IDE VS2015).
+This project contains the AnonymityChat graphical interface and communicates (IPC over sockets) with [TorExpertBundleController](https://github.com/batsw/TorExpertBundleController). Is written in C# (IDE VS2015).
 
 [TorExpertBundleController](https://github.com/batsw/TorExpertBundleController) is an application written in java that manages the Tor Expert Bundle. Also TorExpertBundleController will use the [JSocketIpc](https://github.com/batsw/JSocketIpc) library to communicate with  WindowsAnonymityChat
 
@@ -16,7 +16,7 @@ This project will contain the AnonymityChat graphical interface and will communi
 * [JSocketIpc](https://github.com/batsw/JSocketIpc)
 
 
-##  Development Status
-* [TorExpertBundleController](https://github.com/batsw/TorExpertBundleController) IN PROGRESS 90% DONE
-* [JSocketIpc](https://github.com/batsw/JSocketIpc)                               IN PROGRESS 0-5% DONE                              
+## Features and foucs
+* [TorExpertBundleController](https://github.com/batsw/TorExpertBundleController) IN PROGRESS
+* [JSocketIpc](https://github.com/batsw/JSocketIpc)                               IN PROGRESSs                            
 * [WindowsAnonymityChat](https://github.com/batsw/WindowsAnonymityChat)           OPEN 
