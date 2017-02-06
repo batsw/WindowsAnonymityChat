@@ -1,5 +1,8 @@
 package com.batsw.torExpertBundleController.service.impl;
 
+import com.batsw.interProcessCommunication.MessageListener;
+import com.batsw.interProcessCommunication.EventManager;
+
 import com.batsw.torExpertBundleController.common.Constanst;
 import com.batsw.torExpertBundleController.common.FileHandler;
 import com.batsw.torExpertBundleController.common.ReturnValue;
@@ -10,6 +13,7 @@ import com.batsw.torExpertBundleController.model.TorProcessModel;
 import com.batsw.torExpertBundleController.service.i.IConfigurationReader;
 import com.batsw.torExpertBundleController.service.i.IParser;
 import com.batsw.torExpertBundleController.service.i.IBundleProcess;
+import com.sun.xml.internal.ws.api.model.MEP;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.Scanner;
@@ -20,7 +24,7 @@ import java.io.IOException;
 /**
  *  Helps manage the lifecycle of Tor bundle expert
  */
-public class Bundle implements IBundleProcess {
+public class Bundle implements IBundleProcess, MessageListener {
 
 	public static Bundle instance = null;
 	// Static and constants
@@ -31,6 +35,7 @@ public class Bundle implements IBundleProcess {
 	private IConfigurationReader mConfugurationReader;
 	private IParser<TorProcessModel> mTorchatcfgParser;
 	private IParser<TorBundleInformation> mTorrcParser;
+	private EventManager meventManager;
 
 	// Defined Models
 	private TorBundleInformation mTorrcInformation;
@@ -55,11 +60,12 @@ public class Bundle implements IBundleProcess {
 	}
 
 	public Bundle(IConfigurationReader configurationReader, IParser<TorProcessModel> torchatcfgParser,
-		IParser<TorBundleInformation> torrcParser) {
+		IParser<TorBundleInformation> torrcParser, EventManager eventManager) {
 		mConfugurationReader = configurationReader;
 		mTorchatcfgParser = torchatcfgParser;
 		mTorrcParser =torrcParser;
 		bundleProcessBuilder = new ProcessBuilder();
+		meventManager = eventManager;
 	}
 
 	public ReturnValue getConfiguration() {
@@ -123,6 +129,7 @@ public class Bundle implements IBundleProcess {
 			Scanner torLogMessages = new Scanner(bundleHandle.getInputStream());
 			while (torLogMessages.hasNextLine()) {
 				String torData = torLogMessages.nextLine();
+				meventManager.FireEvent(torData);
 				StatusEnum loadingStatus = torProccessMessagesParser.parse(torData);
 				log.info(torData);
 				log.info(loadingStatus.toString());
@@ -160,5 +167,9 @@ public class Bundle implements IBundleProcess {
 		bundleHandle.destroy();
 		System.out.println("Bundle Stopped");
 		return returnValue;
+	}
+
+	public void SendMessage(String message){
+
 	}
 }

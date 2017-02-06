@@ -6,23 +6,30 @@ import com.batsw.sockets.Publisher;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.batsw.interProcessCommunication.EventManager;
+
 public class Main {
     public  static final Logger log = LogManager.getLogger(Main.class);
     public static void main (String[] argv){
         try{
-            //IPC
+            // IPC
             PipeWritter pw = new PipeWritter();
             PipeReader  pr = new PipeReader();
             Thread tr = new Thread(pr);
             tr.start();
             Thread tw = new Thread(pw);
             tw.start();
+
+            // EventManger
+            EventManager eventManager = new EventManager();
+            eventManager.addEvenrtListener(pw);
+
             //Bundle
             ReturnValue result;
             TorchatConfigReader cfr = new TorchatConfigReader();
             TorchatcfgParser tcp = new TorchatcfgParser();
             TorrcFileParser trp = new TorrcFileParser();
-            Bundle bundle = new Bundle(cfr, tcp, trp);
+            Bundle bundle = new Bundle(cfr, tcp, trp,eventManager);
             result = bundle.getConfiguration();
             if (!result.getSuccess()) {
                 log.error ("Invalid app configuration please contact suport");

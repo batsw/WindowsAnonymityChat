@@ -1,10 +1,12 @@
 package com.batsw.interProcessCommunication;
 
+import com.batsw.interProcessCommunication.MessageListener;
+
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Scanner;
 
-public class PipeWritter implements  Runnable{
+public class PipeWritter implements  Runnable, MessageListener{
 
     private final String pipeName = "AnonimityPipeRead";
     private final String pipeRights = "rw";
@@ -19,12 +21,20 @@ public class PipeWritter implements  Runnable{
             pipeClient = new RandomAccessFile("\\\\.\\pipe\\" + pipeName, pipeRights);
             Scanner reader = new Scanner(System.in);
             while(true){
-                String message = reader.nextLine();
-                pipeClient.writeUTF ( message  + "\n");
-                String echoResponse = pipeClient.readLine();
-                System.out.println("Response: " + echoResponse );
+             //   String message = reader.nextLine();
+              //  pipeClient.writeUTF ( message  + "\n");
+               // String echoResponse = pipeClient.readLine();
+               // System.out.println("Response: " + echoResponse );
             }
             //TODO: add pipeClient.close();
+        } catch (IOException io) {
+
+        }
+    }
+
+    public void SendMessage(String message){
+        try {
+            pipeClient.writeUTF ( message  + "\n");
         } catch (IOException io) {
 
         }
