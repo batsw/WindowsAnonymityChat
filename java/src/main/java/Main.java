@@ -15,14 +15,15 @@ public class Main {
             // IPC
             PipeWritter pw = new PipeWritter();
             PipeReader  pr = new PipeReader();
+            EventManager eventManager = new EventManager();
+            eventManager.addEvenrtListener(pw);
             Thread tr = new Thread(pr);
             tr.start();
             Thread tw = new Thread(pw);
             tw.start();
 
             // EventManger
-            EventManager eventManager = new EventManager();
-            eventManager.addEvenrtListener(pw);
+
 
             //Bundle
             ReturnValue result;
