@@ -1,9 +1,13 @@
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
 using System;
 using System.Threading;
 using AnonymityChat.Service;
 using AnonymityChat.Services;
+using System.Diagnostics;
+
+
 
 namespace AnonymityChat.ViewModel
 {
@@ -33,5 +37,20 @@ namespace AnonymityChat.ViewModel
           Console.WriteLine("Message received from client:\n");
           Console.WriteLine(message);
         }
+
+    public RelayCommand starAnonimitytBundleCommand;
+    public RelayCommand StartAnonimityBundleCommand
+    {
+      get
+      {
+        return starAnonimitytBundleCommand ?? (new RelayCommand(
+          () =>
+          {
+            Process bundleHandle = new Process();
+
+          }));
+      }
+    }
+  
     }
 }

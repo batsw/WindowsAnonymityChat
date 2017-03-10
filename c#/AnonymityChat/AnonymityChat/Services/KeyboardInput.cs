@@ -24,7 +24,6 @@ namespace AnonymityChat.Services
       {
         Console.WriteLine("To send");
         String message = Console.ReadLine();
-        //String message = "received\n";
         SendMessage(message + "\n");
       }
     }

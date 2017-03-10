@@ -5,9 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnonymityChat"
         mc:Ignorable="d"
-        Title="AnonymityChat" Height="350" Width="525"
+        Title="AnonymityChat" Height="200" Width="500"
          DataContext="{Binding Main,Source={StaticResource Locator}}">
     <Grid>
-        <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center" Text="Under Construction" FontSize="40"/>
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="Loading AnonimityChat..." FontSize="14" FontWeight="Bold"/>
+                <ProgressBar Minimum="0.00" Maximum="100.00" Height="10" Width="400"/>
+                <TextBlock Text="Bundle Messages"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

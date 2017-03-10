@@ -1,6 +1,7 @@
 package com.batsw.sockets;
 
 import com.batsw.torExpertBundleController.model.TorBundleInformation;
+import org.apache.log4j.Logger;
 
 import java.io.*;
 import java.net.InetSocketAddress;
@@ -10,12 +11,11 @@ import java.net.SocketAddress;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 
 
 public class Publisher {
-	public  static final Logger log = LogManager.getLogger(Publisher.class);
+	//public static final Logger log = Logger.getLogger(Publisher.class);
 
 	private final String LOCALHOST = "127.0.0.1";
 	private final int OUTPUT_PORT = 80;
@@ -39,16 +39,16 @@ public class Publisher {
 		try {
 			OutputStream outToServer;
 			InputStream sentByServer;
-			log.info("Connecting to local proxy");
+			//log.info("Connecting to local proxy");
 			convertToInt();
 			SocketAddress proxyAddress = new InetSocketAddress(LOCALHOST, socksPort);
 			Proxy proxy = new Proxy (Proxy.Type.SOCKS, proxyAddress);
 			socket = new Socket(proxy);
 
-			log.info("Connecting to " + destinationAddress);
+			//log.info("Connecting to " + destinationAddress);
 			InetSocketAddress destination = new InetSocketAddress(destinationAddress, OUTPUT_PORT);
 			socket.connect(destination);
-			log.info("Connected to " + destinationAddress);
+			//log.info("Connected to " + destinationAddress);
 
 			outToServer = socket.getOutputStream();
 			sentByServer = socket.getInputStream();
@@ -57,7 +57,7 @@ public class Publisher {
 
 			Scanner input = new Scanner(System.in);
 			while (!message.equals("QUIT")) {
-				log.info("Please Enter Message");
+				//log.info("Please Enter Message");
 				message = input.nextLine();
 
 				String EOL = System.lineSeparator();

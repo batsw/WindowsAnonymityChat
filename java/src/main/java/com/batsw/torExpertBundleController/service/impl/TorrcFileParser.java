@@ -2,15 +2,14 @@ package com.batsw.torExpertBundleController.service.impl;
 
 import com.batsw.torExpertBundleController.model.TorBundleInformation;
 import com.batsw.torExpertBundleController.service.i.IParser;
+import org.apache.log4j.Logger;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 /**
  * Provides a method to parse the contents of torrc file
  */
 public class TorrcFileParser implements IParser<TorBundleInformation> {
-	public final static Logger log = LogManager.getLogger(TorrcFileParser.class);
+	public static final Logger log = Logger.getLogger(TorrcFileParser.class);
 	final private String SOCKS_PORT = "SocksPort";
 	final private String HIDDEN_SERVICE_PORT = "HiddenServicePort";
 	final private String HIDDEN_SERVICE_DIRECTORY = "HiddenServiceDir";

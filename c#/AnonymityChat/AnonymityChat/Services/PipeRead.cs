@@ -2,14 +2,13 @@
 using System.IO.Pipes;
 using System.Threading;
 using System.Text;
-using System;
 using System.IO;
+
 namespace AnonymityChat.Service
 {
   public delegate void PipeMessageReceiverEventHandler(string message);
   class PipeRead
   {
-
     private const String pipeServerName = "AnonimityPipeRead";
     private const int numberOfSevers = 1;
     private const int messageSizeHeaderSize = 32;
@@ -22,8 +21,7 @@ namespace AnonymityChat.Service
     public PipeRead(PipeMessageReceiverEventHandler ceh)
     {
       receivedMessage = new PipeMessageReceiverEventHandler(ceh);
-    }
-    public void ServerThread()
+    }    public void ServerThread()
     {
       NamedPipeServerStream pipeServer = new NamedPipeServerStream
         (pipeServerName, PipeDirection.InOut, numberOfSevers);

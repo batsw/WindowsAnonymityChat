@@ -2,15 +2,14 @@ package com.batsw.torExpertBundleController.service.impl;
 
 import com.batsw.torExpertBundleController.common.StatusEnum;
 import com.batsw.torExpertBundleController.service.i.IParser;
+//import org.apache.log4j.Logger;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 /**
  * Provides methods to parse the log messages received from tor bundle at start-up
  */
 public class BundleLogMessageParser implements IParser<StatusEnum> {
-	public final static  Logger log = LogManager.getLogger(BundleLogMessageParser.class);
+//	public static final Logger log = Logger.getLogger(BundleLogMessageParser.class);
 	public final String NOTICE_LOG = "[notice]";
 	public final String WARNING_LOG = "[warn]";
 	public final String ERROR_LOG = "[err]";

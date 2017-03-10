@@ -13,9 +13,9 @@ import com.batsw.torExpertBundleController.model.TorProcessModel;
 import com.batsw.torExpertBundleController.service.i.IConfigurationReader;
 import com.batsw.torExpertBundleController.service.i.IParser;
 import com.batsw.torExpertBundleController.service.i.IBundleProcess;
-import com.sun.xml.internal.ws.api.model.MEP;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.log4j.Logger;
+//import com.sun.xml.internal.ws.api.model.MEP;
+
 import java.util.Scanner;
 
 
@@ -29,7 +29,7 @@ public class Bundle implements IBundleProcess, MessageListener {
 	public static Bundle instance = null;
 	// Static and constants
 	final private String NO_HOSTNAME = "No hostname";
-	public final static Logger log = LogManager.getLogger(Bundle.class);
+	//public static final Logger log = Logger.getLogger(Bundle.class);
 
 	// Defined Services
 	private IConfigurationReader mConfugurationReader;
@@ -73,26 +73,26 @@ public class Bundle implements IBundleProcess, MessageListener {
 		String torchatcfgFileContent;
 		ReturnValue result = new ReturnValue();
 		String currentPath = System.getProperty("user.dir");
-		log.info("Current directory : " + currentPath );
+	//	log.info("Current directory : " + currentPath );
 
-		log.info("Reading torchatcfg.json file");
+	//	log.info("Reading torchatcfg.json file");
 		torchatcfgFileContent = mConfugurationReader.getConfigurationFile(currentPath, Constanst.TORCHATCFG_FILENAME);
 		if ( torchatcfgFileContent != null) {
 			mTorchatcfgInformation = mTorchatcfgParser.parse(torchatcfgFileContent);
 		}
 		if (torchatcfgFileContent == null || mTorchatcfgInformation == null) {
-			log.warn("Invalid " + Constanst.TORCHATCFG_FILENAME + " loading default file");
+		//	log.warn("Invalid " + Constanst.TORCHATCFG_FILENAME + " loading default file");
 			torchatcfgFileContent = mConfugurationReader.getDefaultConfigurationFile(Constanst.TORCHATCFG_FILENAME);
 			FileHandler.writeToFile(currentPath + "\\" + Constanst.TORCHATCFG_FILENAME, torchatcfgFileContent);
 			result.setSuccess(false);
 		}
-		log.info("Reading torchatcfg.json file");
+	//	log.info("Reading torchatcfg.json file");
 		torrcFileContent = mConfugurationReader.getConfigurationFile(currentPath, Constanst.TORRC_FILENAME);
 		if ( torrcFileContent != null) {
 			mTorrcInformation = mTorrcParser.parse(torrcFileContent);
 		}
 		if (torrcFileContent == null || mTorrcInformation == null) {
-			log.warn("Invalid " + Constanst.TORRC_FILENAME + " loading default file");
+		//	log.warn("Invalid " + Constanst.TORRC_FILENAME + " loading default file");
 			torrcFileContent = mConfugurationReader.getDefaultConfigurationFile(Constanst.TORRC_FILENAME);
 			FileHandler.writeToFile(currentPath + "\\" + Constanst.TORRC_FILENAME, torrcFileContent);
 			result.setSuccess(false);
@@ -122,7 +122,7 @@ public class Bundle implements IBundleProcess, MessageListener {
 			HiddenServiceReader hiddenServiceReader = new HiddenServiceReader(mTorrcInformation.getHiddenServiceDir());
 			ReturnValue hiddenServiceStatus = hiddenServiceReader.getHiddenServiceStatus();
 			if (!hiddenServiceStatus.getSuccess()) {
-				log.warn("New hostname will be assigned");
+		//		log.warn("New hostname will be assigned");
 			}
 			bundleHandle = bundleProcessBuilder.start();
 			BundleLogMessageParser torProccessMessagesParser = new BundleLogMessageParser();
@@ -131,24 +131,24 @@ public class Bundle implements IBundleProcess, MessageListener {
 				String torData = torLogMessages.nextLine();
 				meventManager.FireEvent(torData);
 				StatusEnum loadingStatus = torProccessMessagesParser.parse(torData);
-				log.info(torData);
-				log.info(loadingStatus.toString());
+				//log.info(torData);
+				//log.info(loadingStatus.toString());
 
 				if (loadingStatus.equals(StatusEnum.DONE)) {
-					log.info("Bundle Started");
+				//	log.info("Bundle Started");
 					hostname = hiddenServiceReader.getHostname();
 					if ( hostname == NO_HOSTNAME || hostname == null) {
-						log.error("No hostname found");
+					//	log.error("No hostname found");
 						result.setSuccess(false);
 						stop();
 
 					}
-					log.info("hostname value: " + hostname);
+				//	log.info("hostname value: " + hostname);
 					return result;
 
 				}
 				if (loadingStatus.equals(StatusEnum.ERROR)) {
-					log.info("Error");
+					//log.info("Error");
 					result.setSuccess(false);
 					stop();
 					return result;
@@ -156,7 +156,7 @@ public class Bundle implements IBundleProcess, MessageListener {
 			}
 
 		} catch (IOException e) {
-			log.error("Unable to start bundle");
+		//	log.error("Unable to start bundle");
 		}
 
 		return result;

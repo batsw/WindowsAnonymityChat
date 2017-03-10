@@ -2,19 +2,19 @@ package com.batsw.torExpertBundleController.service.impl;
 
 
 import com.batsw.torExpertBundleController.model.TorProcessModel;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.log4j.Logger;
+
 
 /**
  *  Provides methods to get absolute paths for tor locations
  *  Replace . with current working directory
  */
 public class FilePathService {
-    public static final Logger log = LogManager.getLogger(FilePathService.class);
+   // public static final Logger log = Logger.getLogger(FilePathService.class);
     public FilePathService() {}
 
     public TorProcessModel getTorAbsolutePaths(TorProcessModel  processInfo) {
-        log.info("Setting absolute path for bundle");
+       // log.info("Setting absolute path for bundle");
         TorProcessModel result = new TorProcessModel();
         result.setConfigurationFilePath(setAbsolutePath(processInfo.getConfigurationFilePath()));
         result.setHiddenServicePath(setAbsolutePath(processInfo.getHiddenServicePath()));

@@ -1,7 +1,7 @@
 package com.batsw.torExpertBundleController.common;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.log4j.Logger;
+
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -11,11 +11,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class FileHandler {
-    public final static Logger log = LogManager.getLogger(FileHandler.class);
+  //  public static final Logger log = Logger.getLogger(FileHandler.class);
     private static final String CLASS_NAME = FileHandler.class.getName();
 
     static public String readFile(String filePath) {
-        log.debug("Reading file: " + filePath);
+       // log.debug("Reading file: " + filePath);
         String fileContent = "";
         Path path = Paths.get(filePath);
         Charset charset = Charset.forName("US-ASCII");
@@ -26,14 +26,14 @@ public class FileHandler {
             }
             return fileContent;
         } catch (IOException ex) {
-            log.debug("IOException: %s%n", ex);
-            log.info("Canot open " + filePath);
+           // log.debug("IOException: %s%n", ex);
+           // log.info("Canot open " + filePath);
             return null;
         }
     }
 
     static public ArrayList<String> readFileByLine(String filePath) {
-        log.debug("Reading file: " + filePath);
+      //  log.debug("Reading file: " + filePath);
         ArrayList<String> fileContent = new ArrayList<>();
         Path path = Paths.get(filePath);
         Charset charset = Charset.forName("US-ASCII");
@@ -44,8 +44,8 @@ public class FileHandler {
             }
             return fileContent;
         } catch (IOException ex) {
-            log.debug("IOException: %s%n", ex);
-            log.info("Canot open " + filePath);
+         //   log.debug("IOException: %s%n", ex);
+         //   log.info("Canot open " + filePath);
             return null;
         }
     }
@@ -61,7 +61,7 @@ public class FileHandler {
     }
 
     static public Boolean writeToFile(String filePath, String fileContent) {
-        log.debug("Writhing file: " + filePath);
+      //  log.debug("Writhing file: " + filePath);
         File fileHandler = new File(filePath);
 
         try {
@@ -73,11 +73,11 @@ public class FileHandler {
 
             writer.write(fileContent);
             writer.close();
-            log.info("Created file " + filePath);
+          //  log.info("Created file " + filePath);
             return true;
         } catch (IOException ex) {
-            log.debug("IOException: %s%n", ex);
-            log.info("Cannot open " + filePath);
+        //    log.debug("IOException: %s%n", ex);
+        //    log.info("Cannot open " + filePath);
             return false;
         }
     }
