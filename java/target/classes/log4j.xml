@@ -1,15 +1,37 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration debug="false">
 
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-    <appender name="<em>console</em>" class="org.apache.log4j.ConsoleAppender">
-        <param name="Target" value="System.out"/>
-        <layout class="<em>org.apache.log4j.PatternLayout</em>">
-            <param name="ConversionPattern" value="%-5p %c{1} - %m%n"/>
+    <appender name="default.console" class="org.apache.log4j.ConsoleAppender">
+        <param name="target" value="System.out" />
+        <param name="threshold" value="debug" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p [%c{1}] - %m%n" />
         </layout>
     </appender>
+
+    <appender name="default.file" class="org.apache.log4j.FileAppender">
+        <param name="file" value="/log/mylogfile.log" />
+        <param name="append" value="false" />
+        <param name="threshold" value="debug" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p [%c{1}] - %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="another.file" class="org.apache.log4j.FileAppender">
+        <param name="file" value="/log/anotherlogfile.log" />
+        <param name="append" value="false" />
+        <param name="threshold" value="debug" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} %-5p [%c{1}] - %m%n" />
+        </layout>
+    </appender>
+
+
     <root>
-        <priority value ="debug" />
-        <appender-ref ref="console" />
+        <priority value="info" />
+        <appender-ref ref="default.console" />
+        <appender-ref ref="default.file" />
     </root>
 </log4j:configuration>
