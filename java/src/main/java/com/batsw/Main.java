@@ -7,16 +7,16 @@ import com.batsw.interProcessCommunication.*;
 import com.batsw.sockets.Publisher;
 
 import com.batsw.interProcessCommunication.EventManager;
-//
-// import org.apache.log4j.Logger;
+
+ import org.apache.log4j.Logger;
 
 public class Main {
 
-    //public static final Logger log = Logger.getLogger(com.batsw.Main.class);
+  //  public static final Logger log = Logger.getLogger(com.batsw.Main.class);
 
-//    public  static final Logger log = LogManager.getLogManager().getLogger("com.batsw.Main.class");
-//    public  static final Logger log =
-//       private static final Logger log = Logger.getLogger(com.batsw.Main.class);
+//   public  static final Logger log = LogManager.getLogManager().getLogger("com.batsw.Main.class");
+  //  public  static final Logger log =
+    //   private static final Logger log = Logger.getLogger(com.batsw.Main.class);
     public static void main (String[] argv){
         try{
             // IPC
@@ -55,8 +55,8 @@ public class Main {
             }).start();
             
             // RUN PUBLISHER
-            Publisher publisher = new Publisher(bundle.getBundleInfo(),"jjnleshvsrqchcl7.onion");
-            publisher.run();
+           // Publisher publisher = new Publisher(bundle.getBundleInfo(),"jjnleshvsrqchcl7.onion");
+            //publisher.run();
             tr.join();
             tw.join();
 

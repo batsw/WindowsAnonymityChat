@@ -12,6 +12,7 @@
   See http://www.galasoft.ch/mvvm
 */
 
+using AnonymityChat.View;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
@@ -42,17 +43,28 @@ namespace AnonymityChat.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
+            SimpleIoc.Default.Register<LoadViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
-        }
 
-        public MainViewModel Main
+            SimpleIoc.Default.Register<MainWindow>();
+
+    }
+
+        public LoadViewModel Load
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
+                return ServiceLocator.Current.GetInstance<LoadViewModel>();
             }
         }
         
+    public MainViewModel Main
+    {
+      get
+      {
+        return ServiceLocator.Current.GetInstance<MainViewModel>();
+      }
+    }
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
