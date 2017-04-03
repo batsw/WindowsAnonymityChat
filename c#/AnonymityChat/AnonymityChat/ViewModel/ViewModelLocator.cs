@@ -47,6 +47,7 @@ namespace AnonymityChat.ViewModel
             SimpleIoc.Default.Register<MainViewModel>();
 
             SimpleIoc.Default.Register<MainWindow>();
+            SimpleIoc.Default.Register<AddContactWindow>();
 
     }
 

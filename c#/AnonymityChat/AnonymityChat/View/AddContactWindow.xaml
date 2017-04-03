@@ -1,0 +1,40 @@
+﻿<Window x:Class="AnonymityChat.View.AddContactWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnonymityChat.View"
+        mc:Ignorable="d"
+        Title="Add Contact" Height="150" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Name:" HorizontalAlignment="Left"  Height="20"/>
+            <TextBox   Grid.Column="1"              HorizontalAlignment="Stretch"  Height="20"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="OnionURL:" HorizontalAlignment="Left"  Height="20"/>
+            <TextBox   Grid.Column="1"              HorizontalAlignment="Stretch"  Height="20"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content ="SAVE"/>
+            <Button Grid.Column="1" Content ="DISCARD"/>
+        </Grid>
+    </Grid>
+</Window>

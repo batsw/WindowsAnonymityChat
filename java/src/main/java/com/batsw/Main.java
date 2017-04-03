@@ -55,8 +55,8 @@ public class Main {
             }).start();
             
             // RUN PUBLISHER
-           // Publisher publisher = new Publisher(bundle.getBundleInfo(),"jjnleshvsrqchcl7.onion");
-            //publisher.run();
+           Publisher publisher = new Publisher(bundle.getBundleInfo(),"ecdw3wod4uqaufbk.onion ");
+            publisher.run();
             tr.join();
             tw.join();
 

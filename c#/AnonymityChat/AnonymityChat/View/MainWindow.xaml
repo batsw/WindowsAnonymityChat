@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnonymityChat.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="300">
-    <Grid>
+        x:Name="mainWindow"
+        Title="AnonimityChat" Height="300" Width="300"
+        DataContext="{Binding Main,Source={StaticResource Locator}}">
         
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Contacts">
+                    <MenuItem Header="_Add" Click="{Binding LoadAddContactWindow, Mode=OneWay}"  />
+                </MenuItem>
+                <MenuItem Header="Exit"/>
+            </Menu>
+            <TextBox AcceptsReturn="True" />
+
+        </DockPanel>
+
+        <TextBlock Grid.Row="1" Text ="{Binding Hostname}"/>
     </Grid>
 </Window>
