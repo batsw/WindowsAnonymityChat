@@ -8,7 +8,13 @@
         x:Name="mainWindow"
         Title="AnonimityChat" Height="300" Width="300"
         DataContext="{Binding Main,Source={StaticResource Locator}}">
-        
+    <Window.Resources>
+        <ResourceDictionary >
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resources/Dictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -19,7 +25,7 @@
         <DockPanel Grid.Row="0">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_Contacts">
-                    <MenuItem Header="_Add" Click="{Binding LoadAddContactWindow, Mode=OneWay}"  />
+                    <MenuItem Header="_Add" Command="{Binding LoadAddContactWindow, Mode=OneWay}"  />
                 </MenuItem>
                 <MenuItem Header="Exit"/>
             </Menu>
@@ -28,5 +34,6 @@
         </DockPanel>
 
         <TextBlock Grid.Row="1" Text ="{Binding Hostname}"/>
+        <ListView Grid.Row="2" x:Name="contactListBox" ItemTemplate="{StaticResource ContactsList}"/>
     </Grid>
 </Window>

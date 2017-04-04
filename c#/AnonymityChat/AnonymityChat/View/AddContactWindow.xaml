@@ -4,7 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AnonymityChat.View"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"  xmlns:Custom="http://www.galasoft.ch/mvvmlight" 
+        x:Name="addContactWindow"
         mc:Ignorable="d"
+        DataContext="{Binding AddContact,Source={StaticResource Locator}}"
         Title="Add Contact" Height="150" Width="300">
     <Grid>
         <Grid.RowDefinitions>
@@ -18,7 +21,7 @@
                 <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Name:" HorizontalAlignment="Left"  Height="20"/>
-            <TextBox   Grid.Column="1"              HorizontalAlignment="Stretch"  Height="20"/>
+            <TextBox   Grid.Column="1"              HorizontalAlignment="Stretch"  Height="20" />
         </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -33,8 +36,8 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content ="SAVE"/>
-            <Button Grid.Column="1" Content ="DISCARD"/>
+            <Button Grid.Column="0" Content ="SAVE"     Command="{Binding CloseWindow, Mode=OneWay}" CommandParameter="{Binding ElementName=addContactWindow}"/>
+            <Button Grid.Column="1" Content ="DISCARD"  Command="{Binding CloseWindow, Mode=OneWay}" CommandParameter="{Binding ElementName=addContactWindow}"/>
         </Grid>
     </Grid>
 </Window>

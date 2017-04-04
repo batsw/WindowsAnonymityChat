@@ -45,20 +45,28 @@ namespace AnonymityChat.ViewModel
 
             SimpleIoc.Default.Register<LoadViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<AddContactViewModel>();
 
             SimpleIoc.Default.Register<MainWindow>();
             SimpleIoc.Default.Register<AddContactWindow>();
 
     }
 
-        public LoadViewModel Load
+    public LoadViewModel Load
+    {
+        get
         {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<LoadViewModel>();
-            }
+            return ServiceLocator.Current.GetInstance<LoadViewModel>();
         }
-        
+    }
+    
+    public AddContactViewModel AddContact
+    {
+      get
+      {
+        return ServiceLocator.Current.GetInstance<AddContactViewModel>();
+      }
+    }     
     public MainViewModel Main
     {
       get
