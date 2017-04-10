@@ -12,7 +12,16 @@ namespace AnonymityChat.ViewModel
 {
   public class MainViewModel : ViewModelBase
   {
+
+    public MainViewModel()
+    {
+      ContactList = SimpleIoc.Default.GetInstance<Model.ContactList>();
+      ContactList.Contacts.Add(new Model.Contact() {  Alias = "test",  OnionUrl = "test.onion" });
+    }
+
+
     private RelayCommand loadAddContactWindow;
+
 
     public RelayCommand LoadAddContactWindow
     {
@@ -27,6 +36,17 @@ namespace AnonymityChat.ViewModel
       }
     }
 
-
+    public  Model.ContactList ContactList
+    {
+      get
+      {
+        return contactList;
+      }
+      set
+      {
+        Set(() => ContactList, ref contactList, value);
+      }
+    }
+    private Model.ContactList contactList ;
   }
 }

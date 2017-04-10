@@ -50,6 +50,17 @@ namespace AnonymityChat.ViewModel
             SimpleIoc.Default.Register<MainWindow>();
             SimpleIoc.Default.Register<AddContactWindow>();
 
+            SimpleIoc.Default.Register<Model.ContactList>();
+
+    }
+
+    public Model.ContactList ContactList
+    {
+      get
+      {
+        return ServiceLocator.Current.GetInstance<Model.ContactList>();
+      }
+      
     }
 
     public LoadViewModel Load
@@ -77,6 +88,7 @@ namespace AnonymityChat.ViewModel
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
+            
         }
     }
 }

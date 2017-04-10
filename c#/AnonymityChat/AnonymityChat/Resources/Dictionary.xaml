@@ -6,8 +6,9 @@
                     xmlns:services="clr-namespace:AnonymityChat.Services">
     <DataTemplate x:Key="ContactsList">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-            <TextBlock Text="contactname"/>
-            <TextBlock Text="contactURL"/>
+            <TextBlock Text="{Binding Alias}"/>
+            <TextBlock Text=" "/>
+            <TextBlock Text="{Binding OnionUrl}"/>
         </StackPanel>
     </DataTemplate>
     

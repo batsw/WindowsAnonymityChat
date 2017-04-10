@@ -10,6 +10,13 @@ namespace AnonymityChat.Model
 {
   public class ContactList: ObservableObject
   {
+
+    public ContactList()
+    {
+     
+    }
+      
+
     public ObservableCollection<Contact> Contacts
     {
       get
@@ -21,6 +28,8 @@ namespace AnonymityChat.Model
         Set(() => Contacts, ref contactList, value);
       }
     }
-    private ObservableCollection<Contact> contactList; 
+    private ObservableCollection<Contact> contactList = new ObservableCollection<Contact>();
+
   }
 }
+

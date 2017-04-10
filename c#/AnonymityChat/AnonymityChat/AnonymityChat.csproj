@@ -79,6 +79,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Contact.cs" />
+    <Compile Include="Model\ContactList.cs" />
     <Compile Include="ViewModel\AddContactViewModel.cs" />
     <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
