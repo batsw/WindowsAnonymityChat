@@ -3,9 +3,16 @@
                     xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" 
                     xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
                     xmlns:local="clr-namespace:AnonymityChat.Resources"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+                    xmlns:Custom="http://www.galasoft.ch/mvvmlight" 
                     xmlns:services="clr-namespace:AnonymityChat.Services">
     <DataTemplate x:Key="ContactsList">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <Custom:EventToCommand  Command="{Binding Main.StartChat}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
             <TextBlock Text="{Binding Alias}"/>
             <TextBlock Text=" "/>
             <TextBlock Text="{Binding OnionUrl}"/>
