@@ -7,10 +7,11 @@
                     xmlns:Custom="http://www.galasoft.ch/mvvmlight" 
                     xmlns:services="clr-namespace:AnonymityChat.Services">
     <DataTemplate x:Key="ContactsList">
+        
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
             <i:Interaction.Triggers>
-                <i:EventTrigger EventName="MouseLeftButtonDown">
-                    <Custom:EventToCommand  Command="{Binding Main.StartChat}"/>
+                <i:EventTrigger EventName="MouseLeftButtonUp">
+                    <Custom:EventToCommand  Command="{Binding Main.StartChat, Mode=OneWay, Source={StaticResource Locator}}" CommandParameter="{Binding}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <TextBlock Text="{Binding Alias}"/>

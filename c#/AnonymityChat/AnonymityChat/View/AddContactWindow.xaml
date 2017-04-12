@@ -36,8 +36,8 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content ="SAVE"     Command="{Binding AddContact, Mode=OneWay}" CommandParameter="{Binding ElementName=addContactWindow}"/>
-            <Button Grid.Column="1" Content ="DISCARD"  Command="{Binding CloseWindow, Mode=OneWay}" CommandParameter="{Binding ElementName=addContactWindow}"/>
+            <Button Grid.Column="0" Content ="SAVE"     Command="{Binding AddContact.AddContact, Mode=OneWay, Source={StaticResource Locator}}" CommandParameter="{Binding ElementName=addContactWindow}"/>
+            <Button Grid.Column="1" Content ="DISCARD"  Command="{Binding AddContact.CloseWindow, Mode=OneWay, Source={StaticResource Locator}}" CommandParameter="{Binding ElementName=addContactWindow}"/>
         </Grid>
     </Grid>
 </Window>

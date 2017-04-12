@@ -19,15 +19,16 @@ namespace AnonymityChat.ViewModel
       ContactList.Contacts.Add(new Model.Contact() {  Alias = "test",  OnionUrl = "test.onion" });
     }
 
-    private RelayCommand startChat;
-    public RelayCommand StartChat
+    private RelayCommand<Model.Contact> startChat;
+    public RelayCommand<Model.Contact> StartChat
     {
       get
       {
-        return startChat ?? (new RelayCommand(
-        () =>
+        return startChat ?? (new RelayCommand<Model.Contact>(
+        (contactInfo) =>
         {
-
+          //TODO: Show chat window
+          //TODO: Send command to IPC
         }));
         }
     }
