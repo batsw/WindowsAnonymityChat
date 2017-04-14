@@ -22,10 +22,11 @@ The java backed consists of two parts:
 * And a socket library used to exchange data over the Tor network
 
 ### C# User interface
-The C# UI will contain 3 windows:
+The C# UI will contain 4 windows:
 * a loading window(displayed when application connects to Tor network
 * a main window(in whitch you have a menu bar and see the existing contacts
 * a chat window(in witch you initiate a conversation with an user) 
+* add a user window (in with you can add new users)
     
 ### SQLite database
 The main tasks of the database is to store the existing conversations and syncronize the previouse two components using triggers and stored procedures 
