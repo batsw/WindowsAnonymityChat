@@ -7,7 +7,6 @@
                     xmlns:Custom="http://www.galasoft.ch/mvvmlight" 
                     xmlns:services="clr-namespace:AnonymityChat.Services">
     <DataTemplate x:Key="ContactsList">
-        
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseLeftButtonUp">
@@ -19,7 +18,12 @@
             <TextBlock Text="{Binding OnionUrl}"/>
         </StackPanel>
     </DataTemplate>
-    
+
+    <DataTemplate x:Key="ChatHistory">
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+            <TextBlock Text="{Binding  Mode=OneWay}" />
+        </StackPanel>
+    </DataTemplate>
 </ResourceDictionary>
     
     

@@ -25,7 +25,14 @@ namespace AnonymityChat.ViewModel
             Model.ContactList tmpList = SimpleIoc.Default.GetInstance<Model.ContactList>();
             tmpList.Contacts.Add(tmpContact);
             System.Windows.Window window = uiObject as System.Windows.Window;
+            window.Closed += (sender, args) =>
+            {
+              SimpleIoc.Default.Unregister<View.AddContactWindow>();
+              SimpleIoc.Default.Register<View.AddContactWindow>();
+            };
             window.Close();
+            OnionUrl = "";
+            Alias = "";
           }));
       }
     }

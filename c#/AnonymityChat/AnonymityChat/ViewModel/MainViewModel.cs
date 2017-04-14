@@ -27,8 +27,8 @@ namespace AnonymityChat.ViewModel
         return startChat ?? (new RelayCommand<Model.Contact>(
         (contactInfo) =>
         {
-          //TODO: Show chat window
-          //TODO: Send command to IPC
+          System.Windows.Window window = SimpleIoc.Default.GetInstance<View.ChatWindow>();
+          window.Show();
         }));
         }
     }

@@ -34,7 +34,6 @@
 
         </DockPanel>
         <TextBlock Grid.Row="1" Text ="Hy my name is"/>
-       <!-- <TextBlock Grid.Row="1" Text ="{Binding Hostname}"/>-->
         <ListView Grid.Row="2" x:Name="contactListBox" ItemTemplate="{StaticResource ContactsList}" ItemsSource="{Binding ContactList.Contacts}"/>
     </Grid>
 </Window>

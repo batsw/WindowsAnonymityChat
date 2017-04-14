@@ -31,27 +31,24 @@ namespace AnonymityChat.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
-
             SimpleIoc.Default.Register<LoadViewModel>();
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<AddContactViewModel>();
+            SimpleIoc.Default.Register<ChatViewModel>();
 
             SimpleIoc.Default.Register<MainWindow>();
             SimpleIoc.Default.Register<AddContactWindow>();
+            SimpleIoc.Default.Register<ChatWindow>();
 
             SimpleIoc.Default.Register<Model.ContactList>();
 
+    }
+    public ChatViewModel Chat
+    {
+      get
+      {
+        return ServiceLocator.Current.GetInstance<ChatViewModel>();
+      }     
     }
 
     public Model.ContactList ContactList
