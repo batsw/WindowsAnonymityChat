@@ -81,6 +81,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\ContactList.cs" />
+    <Compile Include="Model\IpcContactMessage.cs" />
     <Compile Include="ViewModel\AddContactViewModel.cs" />
     <Compile Include="ViewModel\ChatViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

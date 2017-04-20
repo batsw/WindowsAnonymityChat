@@ -30,8 +30,8 @@ namespace AnonymityChat.Services
     {
       // torBundleExpertHandle.Start();
       torBundleExpertHandle = Process.Start(torBundleInfo);
-      if (torBundleExpertHandle == null) Console.WriteLine("no tor");
-      Console.WriteLine("started tor");
+      if (torBundleExpertHandle == null) Console.WriteLine("cannot start tor");
+      Console.WriteLine("tor started");
     }
     public Process TorBundleExpertHandle
     {

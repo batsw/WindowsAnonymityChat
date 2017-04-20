@@ -3,6 +3,7 @@ using System.IO;
 using System.IO.Pipes;
 using System.Threading;
 using System.Text;
+using System.Collections.Concurrent;
 
 namespace AnonymityChat.Services
 {
@@ -16,14 +17,15 @@ namespace AnonymityChat.Services
     private const int messageHeaderSize = 256;
     private const int messageContentSize = 1760;
     private const int fullMessageSize = 2048;
+    private ConcurrentQueue<string> messages;
 
     public NamedPipeServerStream pipeServer;
-    public event PipeMessageSenderEventHandler receivedMessage;
+   
     Stream pipeStream;
 
-    public PipeWrite(PipeMessageSenderEventHandler ceh)
+    public PipeWrite(ConcurrentQueue<string> messages_)
     {
-      receivedMessage = new PipeMessageSenderEventHandler(ceh);
+      messages = messages_;
     }
 
     public void ServerThread()
@@ -36,7 +38,14 @@ namespace AnonymityChat.Services
       Console.WriteLine("Client connected on thread[{0}].write", threadId);
       StreamReader streamReader = new StreamReader(pipeServer);
 
-      while (true) ;
+      while (true)
+      {
+        string message;
+        if (messages.TryDequeue(out message))
+        {
+          WriteToClient(message);
+        }
+      }
     }
 
     public void WriteToClient(string message)

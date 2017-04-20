@@ -16,6 +16,7 @@ using AnonymityChat.View;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using System.Collections.Concurrent;
 
 namespace AnonymityChat.ViewModel
 {
@@ -40,7 +41,8 @@ namespace AnonymityChat.ViewModel
             SimpleIoc.Default.Register<AddContactWindow>();
             SimpleIoc.Default.Register<ChatWindow>();
 
-            SimpleIoc.Default.Register<Model.ContactList>();
+      SimpleIoc.Default.Register<ConcurrentQueue<string>>();
+      SimpleIoc.Default.Register<Model.ContactList>();
 
     }
     public ChatViewModel Chat

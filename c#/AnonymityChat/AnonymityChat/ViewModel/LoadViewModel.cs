@@ -12,6 +12,7 @@ using System.ComponentModel;
 using AnonymityChat.Model;
 using System.Windows;
 using GalaSoft.MvvmLight.Ioc;
+using System.Collections.Concurrent;
 
 namespace AnonymityChat.ViewModel
 {
@@ -26,7 +27,9 @@ namespace AnonymityChat.ViewModel
   
     private void StartIpcServer()
     {
-      PipeWrite pw = new PipeWrite(ShowMessage);
+      ConcurrentQueue<string> queue = SimpleIoc.Default.GetInstance<ConcurrentQueue<string>>();
+      PipeWrite pw = new PipeWrite(queue);
+      SimpleIoc.Default.Register<PipeWrite>();
       PipeRead pr = new PipeRead(ShowMessage);
       KeyBoardInput ki = new KeyBoardInput(pw.WriteToClient);
       Thread tw = new Thread(new ThreadStart(pw.ServerThread));
@@ -75,10 +78,12 @@ namespace AnonymityChat.ViewModel
     
     private void ipcServerTask_DoWork(object sender, DoWorkEventArgs e)
     {
+
       // http://stackoverflow.com/questions/873809/how-to-execute-a-java-program-from-c
-      torExpertBundleController.start();
+      //TODO: Uncomment to start TorBundle from C#
+        torExpertBundleController.start();
     }
-    
+
     private TorExpertBundleLauncher torExpertBundleController = new TorExpertBundleLauncher();
     private Task ipcTask;
     private BackgroundWorker ipcServerTask = new BackgroundWorker();
@@ -115,7 +120,8 @@ namespace AnonymityChat.ViewModel
              Window w = SimpleIoc.Default.GetInstance<View.MainWindow>();
              w.Show();
              window.Close();
-        
+             ConcurrentQueue<string>  queue =  SimpleIoc.Default.GetInstance<ConcurrentQueue<string>>();
+             queue.Enqueue("Done");
            }
          }));
       }
