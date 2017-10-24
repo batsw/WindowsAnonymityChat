@@ -17,7 +17,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
 using System.Collections.Concurrent;
-
+using IPCServer;
 namespace AnonymityChat.ViewModel
 {
     /// <summary>
@@ -40,9 +40,9 @@ namespace AnonymityChat.ViewModel
             SimpleIoc.Default.Register<MainWindow>();
             SimpleIoc.Default.Register<AddContactWindow>();
             SimpleIoc.Default.Register<ChatWindow>();
-
-      SimpleIoc.Default.Register<ConcurrentQueue<string>>();
-      SimpleIoc.Default.Register<Model.ContactList>();
+            SimpleIoc.Default.Register<ConcurrentQueue<string>>( () =>{ return new ConcurrentQueue<string>(); });
+            SimpleIoc.Default.Register<Model.ContactList>();
+            SimpleIoc.Default.Register<IIpcServer, IpcServer>();
 
     }
     public ChatViewModel Chat
@@ -76,7 +76,16 @@ namespace AnonymityChat.ViewModel
       {
         return ServiceLocator.Current.GetInstance<AddContactViewModel>();
       }
-    }     
+    }  
+    
+    public IIpcServer IpcServer
+    {
+      get
+      {
+        return ServiceLocator.Current.GetInstance<IIpcServer>();
+      }
+    }
+       
     public MainViewModel Main
     {
       get

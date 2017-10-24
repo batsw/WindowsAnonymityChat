@@ -1,53 +1,60 @@
-# Tor state file last generated on 2017-04-03 08:15:30 local time
+# Tor state file last generated on 2017-08-29 20:58:26 local time
 # Other times below are in UTC
 # You *do not* need to edit this file.
 
-EntryGuard kingqueen ECC3599DDCFE44C3F28AE0C9DC5DE92847D3602B DirCache
-EntryGuardAddedBy ECC3599DDCFE44C3F28AE0C9DC5DE92847D3602B 0.2.8.7 2017-01-19 00:41:36
-EntryGuard Gally D85288D1B8A6BBE2A69AE2F05369005BF93AB87D DirCache
-EntryGuardAddedBy D85288D1B8A6BBE2A69AE2F05369005BF93AB87D 0.2.8.7 2017-02-08 10:23:10
+EntryGuard branice 48A1D31469BBB130255B9E53130A5825ECFCC719 DirCache
+EntryGuardAddedBy 48A1D31469BBB130255B9E53130A5825ECFCC719 0.2.8.7 2017-08-24 08:20:36
+EntryGuardPathBias 82.000000 79.000000 79.000000 0.000000 0.000000 1.000000
+EntryGuardPathUseBias 44.000000 44.000000
+EntryGuard Mizar 433B372D540FDC4D7C20965AC9C9C80EC7E260BB DirCache
+EntryGuardAddedBy 433B372D540FDC4D7C20965AC9C9C80EC7E260BB 0.2.8.7 2017-08-12 17:57:15
+EntryGuard horizons E65D300F11E1DB12C534B0146BDAB6972F1A8A48 DirCache
+EntryGuardAddedBy E65D300F11E1DB12C534B0146BDAB6972F1A8A48 0.2.8.7 2017-07-31 11:14:38
 TorVersion Tor 0.2.8.7 (git-263088633a63982a)
-LastWritten 2017-04-03 05:15:30
-TotalBuildTimes 974
-CircuitBuildAbandonedCount 4
-CircuitBuildTimeBin 175 27
-CircuitBuildTimeBin 225 49
-CircuitBuildTimeBin 275 68
-CircuitBuildTimeBin 325 86
-CircuitBuildTimeBin 375 83
-CircuitBuildTimeBin 425 109
-CircuitBuildTimeBin 475 92
+LastWritten 2017-08-29 17:58:26
+TotalBuildTimes 1000
+CircuitBuildAbandonedCount 5
+CircuitBuildTimeBin 175 25
+CircuitBuildTimeBin 225 42
+CircuitBuildTimeBin 275 62
+CircuitBuildTimeBin 325 78
+CircuitBuildTimeBin 375 85
+CircuitBuildTimeBin 425 104
+CircuitBuildTimeBin 475 90
 CircuitBuildTimeBin 525 83
-CircuitBuildTimeBin 575 78
-CircuitBuildTimeBin 625 47
-CircuitBuildTimeBin 675 50
-CircuitBuildTimeBin 725 29
-CircuitBuildTimeBin 775 33
-CircuitBuildTimeBin 825 17
-CircuitBuildTimeBin 875 13
-CircuitBuildTimeBin 925 13
-CircuitBuildTimeBin 975 12
-CircuitBuildTimeBin 1025 6
-CircuitBuildTimeBin 1075 4
-CircuitBuildTimeBin 1125 5
-CircuitBuildTimeBin 1175 6
-CircuitBuildTimeBin 1225 8
-CircuitBuildTimeBin 1275 3
+CircuitBuildTimeBin 575 79
+CircuitBuildTimeBin 625 55
+CircuitBuildTimeBin 675 48
+CircuitBuildTimeBin 725 35
+CircuitBuildTimeBin 775 37
+CircuitBuildTimeBin 825 23
+CircuitBuildTimeBin 875 17
+CircuitBuildTimeBin 925 12
+CircuitBuildTimeBin 975 13
+CircuitBuildTimeBin 1025 12
+CircuitBuildTimeBin 1075 6
+CircuitBuildTimeBin 1125 7
+CircuitBuildTimeBin 1175 7
+CircuitBuildTimeBin 1225 9
+CircuitBuildTimeBin 1275 4
 CircuitBuildTimeBin 1325 4
 CircuitBuildTimeBin 1375 4
 CircuitBuildTimeBin 1425 2
 CircuitBuildTimeBin 1475 2
-CircuitBuildTimeBin 1525 3
-CircuitBuildTimeBin 1575 1
-CircuitBuildTimeBin 1625 2
-CircuitBuildTimeBin 1675 1
+CircuitBuildTimeBin 1525 2
+CircuitBuildTimeBin 1575 2
+CircuitBuildTimeBin 1625 3
+CircuitBuildTimeBin 1675 3
 CircuitBuildTimeBin 1775 2
-CircuitBuildTimeBin 1825 1
-CircuitBuildTimeBin 1975 1
-CircuitBuildTimeBin 2125 1
+CircuitBuildTimeBin 1825 3
+CircuitBuildTimeBin 1925 1
+CircuitBuildTimeBin 1975 3
+CircuitBuildTimeBin 2075 1
+CircuitBuildTimeBin 2125 2
 CircuitBuildTimeBin 2175 1
-CircuitBuildTimeBin 2275 1
-CircuitBuildTimeBin 2325 2
+CircuitBuildTimeBin 2225 2
+CircuitBuildTimeBin 2275 2
+CircuitBuildTimeBin 2325 1
 CircuitBuildTimeBin 2375 1
 CircuitBuildTimeBin 2425 3
 CircuitBuildTimeBin 2575 1
@@ -63,5 +70,6 @@ CircuitBuildTimeBin 14975 1
 CircuitBuildTimeBin 16625 1
 CircuitBuildTimeBin 20175 1
 CircuitBuildTimeBin 21325 1
+CircuitBuildTimeBin 23325 1
 CircuitBuildTimeBin 33475 1
 CircuitBuildTimeBin 49675 1

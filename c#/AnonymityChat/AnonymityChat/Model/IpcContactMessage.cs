@@ -15,6 +15,8 @@ namespace AnonymityChat.Model
       Message 
     }
     public MessageType Type { get; set; }
+    public int MessageNumber { get; set; }
+    public int TotalNumberOfMessages { get; set; }
     public string Destination { get; set; }
     public string Message { get; set; }
 

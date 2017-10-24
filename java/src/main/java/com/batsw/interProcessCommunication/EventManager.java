@@ -1,24 +1,23 @@
 package com.batsw.interProcessCommunication;
-
 import java.util.Vector;
 public class EventManager {
     // Colection of classes that are subcribed to listener
-    protected Vector<MessageListener> listeners;
+    protected Vector<IMessageListener> listeners;
 
-    public void addEvenrtListener(MessageListener listener) {
+    public void addEvenrtListener(IMessageListener listener) {
         if (listeners == null) {
             listeners = new Vector();
         }
         listeners.addElement(listener);
     }
 
-    public void removeEventListener(MessageListener listener) {
+    public void removeEventListener(IMessageListener listener) {
         listeners.remove(listener);
     }
 
-    public void FireEvent(String message){
+    public void FireEvent(IpcMessage message){
         if (listeners != null && !listeners.isEmpty()){
-            for (MessageListener listener : listeners){
+            for (IMessageListener listener : listeners){
                 listener.SendMessage(message);
             }
         }

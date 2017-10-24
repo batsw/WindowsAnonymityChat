@@ -1,8 +1,8 @@
 package com.batsw.torExpertBundleController.service.impl;
 
-import com.batsw.interProcessCommunication.MessageListener;
-import com.batsw.interProcessCommunication.EventManager;
+import com.batsw.interProcessCommunication.IMessageListener;
 
+import com.batsw.interProcessCommunication.*;
 import com.batsw.torExpertBundleController.common.Constanst;
 import com.batsw.torExpertBundleController.common.FileHandler;
 import com.batsw.torExpertBundleController.common.ReturnValue;
@@ -24,7 +24,7 @@ import java.io.IOException;
 /**
  *  Helps manage the lifecycle of Tor bundle expert
  */
-public class Bundle implements IBundleProcess, MessageListener {
+public class Bundle implements IBundleProcess, IMessageListener {
 
 	public static Bundle instance = null;
 	// Static and constants
@@ -35,7 +35,7 @@ public class Bundle implements IBundleProcess, MessageListener {
 	private IConfigurationReader mConfugurationReader;
 	private IParser<TorProcessModel> mTorchatcfgParser;
 	private IParser<TorBundleInformation> mTorrcParser;
-	private EventManager meventManager;
+	private IIpcClient ipcServer;
 
 	// Defined Models
 	private TorBundleInformation mTorrcInformation;
@@ -60,12 +60,12 @@ public class Bundle implements IBundleProcess, MessageListener {
 	}
 
 	public Bundle(IConfigurationReader configurationReader, IParser<TorProcessModel> torchatcfgParser,
-		IParser<TorBundleInformation> torrcParser, EventManager eventManager) {
+		IParser<TorBundleInformation> torrcParser, IIpcClient ipc) {
 		mConfugurationReader = configurationReader;
 		mTorchatcfgParser = torchatcfgParser;
 		mTorrcParser =torrcParser;
 		bundleProcessBuilder = new ProcessBuilder();
-		meventManager = eventManager;
+		ipcServer = ipc;
 	}
 
 	public ReturnValue getConfiguration() {
@@ -129,7 +129,7 @@ public class Bundle implements IBundleProcess, MessageListener {
 			Scanner torLogMessages = new Scanner(bundleHandle.getInputStream());
 			while (torLogMessages.hasNextLine()) {
 				String torData = torLogMessages.nextLine();
-				meventManager.FireEvent(torData);
+				ipcServer.sendMessage(new IpcMessage("bundle", torData));
 				StatusEnum loadingStatus = torProccessMessagesParser.parse(torData);
 				//log.info(torData);
 				//log.info(loadingStatus.toString());
@@ -169,7 +169,7 @@ public class Bundle implements IBundleProcess, MessageListener {
 		return returnValue;
 	}
 
-	public void SendMessage(String message){
+	public void SendMessage(IpcMessage message){
 
 	}
 }

@@ -116,8 +116,6 @@
     </Compile>
     <Compile Include="Model\BundleLogMessage.cs" />
     <Compile Include="Services\KeyboardInput.cs" />
-    <Compile Include="Services\PipeRead.cs" />
-    <Compile Include="Services\PipeWrite.cs" />
     <Compile Include="Services\TorBundleParser.cs" />
     <Compile Include="Services\TorExpertBundleLauncher.cs" />
     <Compile Include="ViewModel\LoadViewModel.cs" />
@@ -159,7 +157,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\IpcServer\IpcServer.csproj">
+      <Project>{6a4cec0b-86c2-4d6b-8ae3-a4f9a817bb8c}</Project>
+      <Name>IpcServer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -8,7 +8,7 @@ namespace AnonymityChat.Model
     public BundleLogMessage()
     {
       loadingPercent = 0.0;
-      logMessage = "Invalid message";
+      logMessage = "Starting Tor Bundle Expert";
     }
     public double LoadingPercent
     {

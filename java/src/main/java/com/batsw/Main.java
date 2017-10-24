@@ -18,17 +18,11 @@ public class Main {
   //  public  static final Logger log =
     //   private static final Logger log = Logger.getLogger(com.batsw.Main.class);
     public static void main (String[] argv){
-        try{
+        try {
             // IPC
-            PipeWritter pw = new PipeWritter();
-            PipeReader  pr = new PipeReader();
-            EventManager eventManager = new EventManager();
-            eventManager.addEvenrtListener(pw);
-            Thread tr = new Thread(pr);
-            tr.start();
-            Thread tw = new Thread(pw);
-            tw.start();
-
+            ReceivedMessage receivedMessage = new ReceivedMessage();
+            IIpcClient ipcClinet = new IpcClient(receivedMessage);
+            ipcClinet.start();
             // EventManger
 
 
@@ -37,7 +31,7 @@ public class Main {
             TorchatConfigReader cfr = new TorchatConfigReader();
             TorchatcfgParser tcp = new TorchatcfgParser();
             TorrcFileParser trp = new TorrcFileParser();
-            Bundle bundle = new Bundle(cfr, tcp, trp,eventManager);
+            Bundle bundle = new Bundle(cfr, tcp, trp, ipcClinet);
             result = bundle.getConfiguration();
             if (!result.getSuccess()) {
 //                //log.error ("Invalid app configuration please contact suport");
@@ -47,20 +41,17 @@ public class Main {
             // RUN RECEIVER
             final Receiver receiver = new Receiver(Integer.parseInt(bundle.getBundleInfo().getHiddenServicePort()));
             new Thread(new Runnable() {
-                public void run(){
-                    while(true){
+                public void run() {
+                    while (true) {
                         receiver.run();
                     }
                 }
             }).start();
-            
-            // RUN PUBLISHER
-           Publisher publisher = new Publisher(bundle.getBundleInfo(),"ecdw3wod4uqaufbk.onion ");
-            publisher.run();
-            tr.join();
-            tw.join();
 
-        } catch (InterruptedException io) {
+            // RUN PUBLISHER
+            //     Publisher publisher = new Publisher(bundle.getBundleInfo(),"ecdw3wod4uqaufbk.onion ");
+            //  publisher.run();
+            ipcClinet.joinClient();
 
         } catch (Exception e ){
 //           //log.error("Application stopped: " + e.getMessage());

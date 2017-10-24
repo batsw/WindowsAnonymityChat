@@ -23,6 +23,8 @@ namespace AnonymityChat.Services
         {
           string[] messageSplit2 = splitMessage[1].Split(' ');
           string percent = messageSplit2[2].Remove(messageSplit2[2].Length - 2);
+          string[] text = message.Split('%');
+          parsedMessage.LogMessage = text[1].Replace(':',' ');
           parsedMessage.LoadingPercent = Convert.ToDouble(percent);
         }
       }

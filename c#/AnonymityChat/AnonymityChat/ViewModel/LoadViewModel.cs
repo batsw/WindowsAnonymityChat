@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight.Command;
 
 using System;
 using System.Threading;
-using AnonymityChat.Service;
+//using AnonymityChat.Service;
 using AnonymityChat.Services;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -13,6 +13,8 @@ using AnonymityChat.Model;
 using System.Windows;
 using GalaSoft.MvvmLight.Ioc;
 using System.Collections.Concurrent;
+
+using IPCServer;
 
 namespace AnonymityChat.ViewModel
 {
@@ -25,27 +27,27 @@ namespace AnonymityChat.ViewModel
       ipcServerTask.DoWork += new DoWorkEventHandler(ipcServerTask_DoWork);
     }
   
-    private void StartIpcServer()
-    {
-      ConcurrentQueue<string> queue = SimpleIoc.Default.GetInstance<ConcurrentQueue<string>>();
-      PipeWrite pw = new PipeWrite(queue);
-      SimpleIoc.Default.Register<PipeWrite>();
-      PipeRead pr = new PipeRead(ShowMessage);
-      KeyBoardInput ki = new KeyBoardInput(pw.WriteToClient);
-      Thread tw = new Thread(new ThreadStart(pw.ServerThread));
-      Thread tr = new Thread(new ThreadStart(pr.ServerThread));
-      tw.Start();
-      tr.Start();
-      tw.Join();
-      tr.Join();
-    }
+    //private void StartIpcServer()
+    //{
+    //  ConcurrentQueue<string> queue = SimpleIoc.Default.GetInstance<ConcurrentQueue<string>>();
+    //  PipeWrite pw = new PipeWrite(queue);
+    //  SimpleIoc.Default.Register<PipeWrite>();
+    //  PipeRead pr = new PipeRead(ShowMessage);
+    //  KeyBoardInput ki = new KeyBoardInput(pw.WriteToClient);
+    //  Thread tw = new Thread(new ThreadStart(pw.ServerThread));
+    //  Thread tr = new Thread(new ThreadStart(pr.ServerThread));
+    //  tw.Start();
+    //  tr.Start();
+    //  tw.Join();
+    //  tr.Join();
+    //}
   
-    public  void ShowMessage(string message)
+    public  void ShowMessage(IpcMessage message)
     {
       Console.WriteLine("Message received from client:\n");
-      Console.WriteLine(message);
+      Console.WriteLine(message.Body);
       TorBundleParser torBundleParser = new TorBundleParser();
-      BundleLogMessage = torBundleParser.parse(message);
+      BundleLogMessage = torBundleParser.parse(message.Body);
 
     }
   
@@ -68,8 +70,9 @@ namespace AnonymityChat.ViewModel
       {
         return starAnonimitytBundleCommand ?? (new RelayCommand(
          () =>
-          {        
-            ipcTask = Task.Run(() => StartIpcServer());
+          {   
+            IIpcServer server = SimpleIoc.Default.GetInstance<IIpcServer>();
+            ipcTask = Task.Run(() => server.Start(ShowMessage));
             Thread.Sleep(5000);
             ipcServerTask.RunWorkerAsync();
           }));
@@ -81,7 +84,7 @@ namespace AnonymityChat.ViewModel
 
       // http://stackoverflow.com/questions/873809/how-to-execute-a-java-program-from-c
       //TODO: Uncomment to start TorBundle from C#
-        torExpertBundleController.start();
+      //  torExpertBundleController.start();
     }
 
     private TorExpertBundleLauncher torExpertBundleController = new TorExpertBundleLauncher();
@@ -121,7 +124,7 @@ namespace AnonymityChat.ViewModel
              w.Show();
              window.Close();
              ConcurrentQueue<string>  queue =  SimpleIoc.Default.GetInstance<ConcurrentQueue<string>>();
-             queue.Enqueue("Done");
+             queue.Enqueue("Done Model loaded");
            }
          }));
       }
